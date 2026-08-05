@@ -1,0 +1,41 @@
+package Sistemabiblioteca;
+import java.util.ArrayList;
+
+
+public class principal {
+
+	public static void main(String[] args) {
+			
+		livro livro1 = new livro();
+		livro livro2 = new livro();
+		livro livro3 = new livro();
+		
+		livro1.titulo = "O pequeno principe";
+		livro1.autor = "Machado de assis";
+		livro1.ano = 1900;
+		
+		livro2.titulo = "A Cabeça do Santo";
+		livro2.autor = "Socorro Acioli";
+		livro2.ano = 2014;
+		
+		livro3.titulo = "Os tres porquinhos";
+		livro3.autor = "Machado de assis";
+		livro3.ano = 2000;
+		
+
+		ArrayList<livro> livros = new ArrayList<>();
+		livros.add(livro1);
+		livros.add(livro2);
+		livros.add(livro3);
+		
+		for (livro livro : livros) {
+		
+		
+		System.out.println("Titulo: " + livro.titulo);
+		System.out.println("Autor: " + livro.autor);
+		System.out.println("ano: " + livro.ano);
+		
+		}
+	}
+
+}

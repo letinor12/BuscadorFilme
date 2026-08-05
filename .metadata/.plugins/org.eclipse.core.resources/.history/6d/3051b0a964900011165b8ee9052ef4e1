@@ -1,0 +1,11 @@
+package Sistemabiblioteca;
+
+public class livro {
+
+		String titulo;
+		String autor;
+		int ano;
+
+	}
+
+

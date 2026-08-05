@@ -1,0 +1,116 @@
+package Sistemabiblioteca;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class principal {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+
+		livro livro1 = new livro();
+		livro livro2 = new livro();
+		livro livro3 = new livro();
+
+		livro1.titulo = "O pequeno principe";
+		livro1.autor = "Machado de assis";
+		livro1.ano = 1900;
+
+		livro2.titulo = "A Cabeça do Santo";
+		livro2.autor = "Socorro Acioli";
+		livro2.ano = 2014;
+
+		livro3.titulo = "Os tres porquinhos";
+		livro3.autor = "Machado de assis";
+		livro3.ano = 2000;
+
+		ArrayList<livro> livros = new ArrayList<>();
+		livros.add(livro1);
+		livros.add(livro2);
+		livros.add(livro3);
+
+		for (livro livro : livros) {
+
+			System.out.println("Titulo: " + livro.titulo);
+			System.out.println("Autor: " + livro.autor);
+			System.out.println("ano: " + livro.ano);
+			System.out.println("--------------");
+
+		}
+
+		int opcao = -1;
+		while (opcao != 0 ) {
+		System.out.println("--Biblioteca--");
+		System.out.println("1 - Cadastrar livro");
+		System.out.println("2 - Listar livros");
+		System.out.println ("3- Buscar livro");
+		System.out.println("0 - Sair");
+		System.out.println("Escolha uma opcao: ");
+
+		opcao = scanner.nextInt();
+		scanner.nextLine();
+
+		
+		
+		if (opcao == 1) {
+			System.out.println("Digite o titulo: ");
+			String titulo = scanner.nextLine();
+			System.out.println("Digite o autor: ");
+			String autor = scanner.nextLine();
+			System.out.println("Digite o ano: ");
+			int ano = scanner.nextInt();
+
+			livro novoLivro = new livro();
+			novoLivro.titulo = titulo;
+			novoLivro.autor = autor;
+			novoLivro.ano = ano;
+
+			livros.add(novoLivro);
+			
+			System.out.println("Livro cadastrado com sucesso");
+
+		} else if (opcao == 2) {
+			for (livro livro : livros) {
+
+				System.out.println("Titulo: " + livro.titulo);
+				System.out.println("Autor: " + livro.autor);
+				System.out.println("ano: " + livro.ano);
+				System.out.println("--------------");
+
+			}
+		} else if (opcao == 3){ 
+			System.out.println ("Digite o titulo da busca");
+			String busca = scanner.nextLine();
+			
+			boolean encontrado = false;
+			
+			for (livro livro : livros) {
+				
+				if (livro.titulo.equalsIgnoreCase(busca)) {
+
+				System.out.println("Titulo: " + livro.titulo);
+				System.out.println("Autor: " + livro.autor);
+				System.out.println("ano: " + livro.ano);
+				System.out.println("--------------");
+
+				encontrado = true;
+			}
+		}
+			if (encontrado == false) {
+				System.out.println ("Livro nao encontrado");
+			}
+		
+			
+		}
+		else if (opcao == 0) {
+			System.out.println("Programa encerrado");
+		} else {
+			System.out.println("Opcao invalida");
+
+		}
+		}
+
+		scanner.close();
+	}
+}

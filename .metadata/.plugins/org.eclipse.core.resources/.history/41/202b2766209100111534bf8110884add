@@ -1,0 +1,218 @@
+package Sistemabiblioteca;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class principal {
+
+	public static void mostrarMenu() {
+		System.out.printf("/n--Biblioteca--");
+		System.out.println("1 - Cadastrar livro");
+		System.out.println("2 - Listar livros");
+		System.out.println("3- Buscar livro");
+		System.out.println("4- Cadastrar usuario");
+		System.out.println("5- Listar usuarios");
+		System.out.println("6- Realizar emprestimo");
+		System.out.println("7- Listar emprestimos");
+		System.out.println ("8 - Devolver livro");
+		System.out.println("0 - Sair");
+		System.out.println("Escolha uma opcao: ");
+
+	}
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+
+		livro livro1 = new livro("O pequeno principe", "Antoine de Saint-Exupéry", 1943);
+		livro livro2 = new livro("A Cabeça do Santo", "Socorro Acioli", 2014);
+		livro livro3 = new livro("O Alquimista", "Paulo Coelho", 1988);
+
+		ArrayList<livro> livros = new ArrayList<>();
+		livros.add(livro1);
+		livros.add(livro2);
+		livros.add(livro3);
+
+		ArrayList<Usuario> usuarios = new ArrayList<>();
+
+		ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+		
+		
+
+		/*
+		 * for (livro livro : livros) {
+		 * 
+		 * System.out.println("Titulo: " + livro.getTitulo());
+		 * System.out.println("Autor: " + livro.getAutor()); System.out.println("ano: "
+		 * + livro.getAno()); System.out.println("--------------");
+		 * 
+		 * }
+		 */
+
+		int opcao = -1;
+		while (opcao != 0) {
+
+			mostrarMenu();
+
+			opcao = scanner.nextInt();
+			scanner.nextLine();
+
+			if (opcao == 1) {
+				System.out.println("Digite o titulo: ");
+				String titulo = scanner.nextLine();
+				System.out.println("Digite o autor: ");
+				String autor = scanner.nextLine();
+				System.out.println("Digite o ano: ");
+				int ano = scanner.nextInt();
+
+				livro novoLivro = new livro(titulo, autor, ano);
+
+				livros.add(novoLivro);
+
+				System.out.println("Livro cadastrado com sucesso");
+
+			} else if (opcao == 2) {
+				for (livro livro : livros) {
+
+					System.out.println("Titulo: " + livro.getTitulo());
+					System.out.println("Autor: " + livro.getAutor());
+					System.out.println("ano: " + livro.getAno());
+					System.out.println("--------------");
+
+				}
+			} else if (opcao == 3) {
+				System.out.println("Digite o titulo da busca");
+				String busca = scanner.nextLine();
+
+				boolean encontrado = false;
+
+				for (livro livro : livros) {
+
+					// equals serve para generalizar a escrita do titulo
+					if (livro.getTitulo().equalsIgnoreCase(busca)) {
+
+						System.out.println("Titulo: " + livro.getTitulo());
+						System.out.println("Autor: " + livro.getAutor());
+						System.out.println("ano: " + livro.getAno());
+						System.out.println("--------------");
+
+						encontrado = true;
+					}
+				}
+				if (encontrado == false) {
+					System.out.println("Livro nao encontrado");
+				}
+
+			} else if (opcao == 4) {
+
+				System.out.println("Nome: ");
+				String nome = scanner.nextLine();
+
+				System.out.println("CPF: ");
+				String cpf = scanner.nextLine();
+
+				System.out.println("Email: ");
+				String email = scanner.nextLine();
+
+				Usuario usuario = new Usuario(nome, cpf, email);
+				usuarios.add(usuario);
+				System.out.println("Usuario cadastrado com sucesso");
+
+			} else if (opcao == 5) {
+				if (usuarios.isEmpty()) {
+					System.out.println("Nenhum usuario cadastrado");
+				} else {
+					for (Usuario usuario : usuarios) {
+						System.out.println("Nome: " + usuario.getNome());
+						System.out.println("CPF: " + usuario.getCpf());
+						System.out.println("Email: " + usuario.getEmail());
+						System.out.println("--------------");
+
+					}
+				}
+
+			} else if (opcao == 6) {
+				System.out.println("Digite o nome do usuario: ");
+				String nomeUsuario = scanner.nextLine();
+
+				Usuario usuarioEncontrado = null;
+
+				for (Usuario usuario : usuarios) {
+					if (usuario.getNome().equalsIgnoreCase(nomeUsuario)) {
+						usuarioEncontrado = usuario;
+					}
+				}
+
+				System.out.println("Digite o titulo do livro: ");
+				String tituloLivro = scanner.nextLine();
+				livro livroEncontrado = null;
+
+				for (livro livro : livros) {
+					if (livro.getTitulo().equalsIgnoreCase(tituloLivro)) {
+						livroEncontrado = livro;
+					}
+				}
+
+				if (usuarioEncontrado != null && livroEncontrado != null) {
+					if (!livroEncontrado.isDisponivel()) {
+						System.out.println ("Este livro ja esta emprestado");
+					} 
+					else { Emprestimo novoEmprestimo = new Emprestimo(usuarioEncontrado, livroEncontrado);
+
+					emprestimos.add(novoEmprestimo);
+					livroEncontrado.setDisponivel(false);
+					
+					
+
+					System.out.println("Emprestimo realizado com sucesso");
+
+				} 
+				}else {
+					System.out.println("Usuario / livro nao encontrado");
+				}
+
+			} else if (opcao == 7) {
+				if (emprestimos.isEmpty()) {
+					System.out.println("Nenhum emprestimo cadastrado");
+				} else {
+					for (Emprestimo emprestimo : emprestimos) {
+						System.out.println("Usuario: " + emprestimo.getUsuario().getNome());
+
+						System.out.println("Livro: " + emprestimo.getLivro().getTitulo());
+
+						System.out.println("Data: " + emprestimo.getDataEmprestimo());
+					}
+				}
+			} else if (opcao == 8) {
+				System.out.println ("Digite o titulo do livro: ");
+				String titulo = scanner.nextLine();
+				
+				boolean devolvido = false;
+				
+				for (int i=0; i<emprestimos.size(); i++) {
+					Emprestimo emprestimo = emprestimos.get(i);
+					
+					if (emprestimo.getLivro().getTitulo().equalsIgnoreCase(titulo)) {
+						emprestimo.getLivro().setDisponivel(true);
+						emprestimos.remove(i);
+						System.out.println("Livro devolvido");
+						devolvido = true;
+						break;
+					}
+				}
+				if (!devolvido) {
+					System.out.println ("Emprestimo nao encontrado");
+				}
+			}
+
+			else if (opcao == 0) {
+				System.out.println("Programa encerrado");
+			} else {
+				System.out.println("Opcao invalida");
+
+			}
+		}
+
+		scanner.close();
+	}
+}

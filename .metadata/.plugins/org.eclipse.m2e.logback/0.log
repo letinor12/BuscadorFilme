@@ -1,0 +1,12 @@
+2026-08-03 18:50:39,442 [Worker-8: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is not available. Remote download required.
+2026-08-03 18:53:27,262 [Worker-24: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-08-03 18:56:37,245 [Worker-9: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-08-03 19:34:00,994 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-08-05 18:18:58,373 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2026-08-05 19:18:11,830 [ModalContext] INFO  o.a.s.c.i.DefaultIoServiceFactoryFactory - No detected/configured IoServiceFactoryFactory; using Nio2ServiceFactoryFactory
+2026-08-05 19:18:25,754 [sshd-JGitSshClient[3c9c5247]-nio2-thread-6] INFO  o.a.s.c.k.e.p.HostBoundPubkeyAuthentication - Server announced support for publickey-hostbound@openssh.com version 0
+2026-08-05 19:19:09,698 [sshd-JGitSshClient[51393116]-nio2-thread-6] INFO  o.a.s.c.k.e.p.HostBoundPubkeyAuthentication - Server announced support for publickey-hostbound@openssh.com version 0
+2026-08-05 19:22:53,445 [Worker-8: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-08-05 19:25:33,752 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2026-08-05 19:44:51,301 [ModalContext] INFO  o.a.s.c.i.DefaultIoServiceFactoryFactory - No detected/configured IoServiceFactoryFactory; using Nio2ServiceFactoryFactory
+2026-08-05 19:44:51,772 [sshd-JGitSshClient[44acc516]-nio2-thread-6] INFO  o.a.s.c.k.e.p.HostBoundPubkeyAuthentication - Server announced support for publickey-hostbound@openssh.com version 0

@@ -1,0 +1,113 @@
+package Sistemabiblioteca;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class principal {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+
+		livro livro1 = new livro(
+				"O pequeno principe", 
+				"Antoine de Saint-Exupéry", 
+				1943
+				);
+		livro livro2 = new livro(
+				"A Cabeça do Santo", 
+				"Socorro Acioli", 
+				2014
+				);
+		livro livro3 = new livro(
+				"O Alquimista", 
+				"Paulo Coelho", 
+				1988
+				);
+
+		ArrayList<livro> livros = new ArrayList<>();
+		livros.add(livro1);
+		livros.add(livro2);
+		livros.add(livro3);
+
+		for (livro livro : livros) {
+
+			System.out.println("Titulo: " + livro.getTitulo());
+			System.out.println("Autor: " + livro.getAutor());
+			System.out.println("ano: " + livro.getAno());
+			System.out.println("--------------");
+
+		}
+
+		int opcao = -1;
+		while (opcao != 0) {
+			System.out.println("--Biblioteca--");
+			System.out.println("1 - Cadastrar livro");
+			System.out.println("2 - Listar livros");
+			System.out.println("3- Buscar livro");
+			System.out.println("0 - Sair");
+			System.out.println("Escolha uma opcao: ");
+
+			opcao = scanner.nextInt();
+			scanner.nextLine();
+
+			if (opcao == 1) {
+				System.out.println("Digite o titulo: ");
+				String titulo = scanner.nextLine();
+				System.out.println("Digite o autor: ");
+				String autor = scanner.nextLine();
+				System.out.println("Digite o ano: ");
+				int ano = scanner.nextInt();
+
+				livro novoLivro = new livro(titulo, autor, ano);
+				
+
+				livros.add(novoLivro);
+
+				System.out.println("Livro cadastrado com sucesso");
+
+			} else if (opcao == 2) {
+				for (livro livro : livros) {
+
+					System.out.println("Titulo: " + livro.getTitulo());
+					System.out.println("Autor: " + livro.getAutor());
+					System.out.println("ano: " + livro.getAno());
+					System.out.println("--------------");
+
+				}
+			} else if (opcao == 3) {
+				System.out.println("Digite o titulo da busca");
+				String busca = scanner.nextLine();
+
+				boolean encontrado = false;
+
+				for (livro livro : livros) {
+
+					// equals serve para generalizar a escrita do titulo
+					if (livro.getTitulo().equalsIgnoreCase(busca)) {
+
+						System.out.println("Titulo: " + livro.getTitulo());
+						System.out.println("Autor: " + livro.getAutor());
+						System.out.println("ano: " + livro.getAno());
+						System.out.println("--------------");
+
+						encontrado = true;
+					}
+				}
+				if (encontrado == false) {
+					System.out.println("Livro nao encontrado");
+				}
+
+			}
+
+			else if (opcao == 0) {
+				System.out.println("Programa encerrado");
+			} else {
+				System.out.println("Opcao invalida");
+
+			}
+		}
+
+		scanner.close();
+	}
+}
